@@ -1,9 +1,9 @@
 "use client";
-const StationItem = ({ key, title, onClickHandler, lineColor, lineName, city }) => {
+const StationItem = ({ id, title, onClickHandler, lineColor, lineName, city }) => {
     return (
         <li
             className="px-4 py-2 cursor-pointer border-slate-100 border-b"
-            key={key}
+            key={id}
             onClick={onClickHandler}
         >
             <div>

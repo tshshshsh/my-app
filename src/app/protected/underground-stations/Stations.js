@@ -59,6 +59,7 @@ const Stations = () => {
                 {suggestions.map((el, id) =>
                     <SuggestionItem
                         key={id}
+                        id={id}
                         title={el.value}
                         lineColor={el.data.color}
                         lineName={el.data.line_name}
