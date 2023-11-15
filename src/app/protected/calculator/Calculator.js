@@ -94,6 +94,7 @@ export default function Calculator() {
     ].map(({ name, title }) =>
         <CalculatorMenuItem
             key={name}
+            id={name}
             isActive={name === theme.value}
             onClick={() => { theme.value = name }}>
             {title}
