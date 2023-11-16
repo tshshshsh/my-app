@@ -1,4 +1,5 @@
 import './globals.css';
+import InstallPrompt from '@/components/IntallPrompt';
 import Navigation from '@/components/layout/NavigationDaisy';
 
 
@@ -48,6 +49,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
+        <InstallPrompt />
         <Navigation />
         <main>
           {children}
