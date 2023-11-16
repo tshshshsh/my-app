@@ -1,6 +1,7 @@
 import './globals.css';
 import InstallPrompt from '@/components/IntallPrompt';
 import Navigation from '@/components/layout/NavigationDaisy';
+import ServiceWorkerRegister from '@/components/pwa/ServiceWorkerRegister';
 
 
 const APP_NAME = "PWA App";
@@ -50,6 +51,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body>
         <InstallPrompt />
+        <ServiceWorkerRegister />
         <Navigation />
         <main>
           {children}
