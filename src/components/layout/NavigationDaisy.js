@@ -2,8 +2,9 @@
 
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
 
-import { user } from '@/signals/AuthSignal'
+import useAuthStore from '@/store/AuthStore';
 
 function createCookie(name, value, days) {
     if (days) {
@@ -20,14 +21,21 @@ function eraseCookie(name) {
 }
 
 const Navigation = () => {
-    const isUserLogin = !!user.value;
+    const [isClient, setIsClient] = useState(false)
+    const { user, setUser } = useAuthStore();
+
+    const isUserLogin = isClient && !!user;
     const router = useRouter();
 
     async function logout() {
         eraseCookie('isAuth');
-        user.value = null;
+        setUser(null);
         router.replace('/login');
     }
+
+    useEffect(() => {
+        setIsClient(true);
+    }, [])
 
     return (
         <nav className='shadow-lg'>

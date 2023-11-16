@@ -1,7 +1,8 @@
-import { theme, themedClasses } from '@/signals/CalculatorTheme';
+import useCalculatorThemeStore from '@/store/CalculatorThemeStore';
 
 export default function CalculatorButton(props) {
-    const themeSettings = themedClasses[theme];
+    const getStyle = useCalculatorThemeStore((state) => state.getStyle)
+    const themeSettings = getStyle();
 
     const widthClass = props.width ? 'w-1/2' : 'w-1/4';
     const bgClass = props.width ? themeSettings.buttonBright : themeSettings.button;

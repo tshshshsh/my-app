@@ -7,9 +7,10 @@ import Card from "../../components/ui/Card";
 import Button from '../../components/ui/Button';
 import { useRouter } from 'next/navigation';
 
-import { user } from '@/signals/AuthSignal';
+import useAuthStore from '@/store/AuthStore';
 
 export default function LoginForm() {
+    const { setUser } = useAuthStore();
     const router = useRouter();
 
     const {
@@ -50,7 +51,7 @@ export default function LoginForm() {
             if (!data.isSuccess) {
                 throw new Error('No user');
             }
-            user.value = userData;
+            setUser(userData);
             router.replace('/');
             return;
 

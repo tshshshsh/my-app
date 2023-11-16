@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { evaluate, round } from 'mathjs';
 
-import { theme, themedClasses } from '@/signals/CalculatorTheme';
+import useCalculatorThemeStore from '@/store/CalculatorThemeStore';
 
 import CalculatorButton from './CalculatorButton';
 import CalculatorRow from './CalculatorRow';
@@ -12,7 +12,14 @@ import CalculatorMenuItem from './CalculatorMenuItem';
 
 export default function Calculator() {
     const [curValue, setCurValue] = useState('');
-    const themedSettings = themedClasses[theme.value];
+
+    const {
+        theme,
+        setTheme,
+        getStyle
+    } = useCalculatorThemeStore();
+
+    const themedSettings = getStyle();
 
     const isOperator = str => /^[\*\/\-\+]$/.test(str);
 
@@ -95,8 +102,8 @@ export default function Calculator() {
         <CalculatorMenuItem
             key={name}
             id={name}
-            isActive={name === theme.value}
-            onClick={() => { theme.value = name }}>
+            isActive={name === theme}
+            onClick={() => { setTheme(name) }}>
             {title}
         </CalculatorMenuItem>
     )
