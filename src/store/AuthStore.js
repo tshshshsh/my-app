@@ -11,6 +11,7 @@ function getCookie(name) {
 
 const useAuthStore = create((set) => ({
     user: getCookie('isAuth'),
+    id: getCookie('userId'),
     setUser: (user) => set({ user: user })
 }));
 

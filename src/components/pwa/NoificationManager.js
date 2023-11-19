@@ -20,7 +20,7 @@ const base64ToUint8Array = base64 => {
 
 const NotificationManager = () => {
     const registration = useServiceWorkerStore((state) => state.registration);
-    const user = useAuthStore((state) => state.user);
+    const { id, user } = useAuthStore();
     const [isClient, setIsClient] = useState(false);
     const [subscription, setSubscription] = useState(null);
 
@@ -56,17 +56,47 @@ const NotificationManager = () => {
             userVisibleOnly: true,
             applicationServerKey: base64ToUint8Array(process.env.NEXT_PUBLIC_NOTIFICATION_KEY)
         })
-        // TODO: you should call your API to save subscription data on server in order to send web push notification from server
-        setSubscription(sub)
-        // setIsSubscribed(true)
-        console.log('web push subscribed!')
-        console.log(JSON.stringify(sub))
+
+        try {
+            await fetch('/api/notification', {
+                method: 'POST',
+                headers: {
+                    'Content-type': 'application/json'
+                },
+                body: JSON.stringify({
+                    action: 'SUBSCRIBE',
+                    user: id,
+                    subscription: sub
+                })
+            })
+
+            setSubscription(sub);
+            console.log('web push subscribed!')
+            console.log(JSON.stringify(sub))
+        } catch (err) {
+            console.log(err);
+        }
+
     }
 
     const unsubscribeButtonOnClick = async event => {
         event.preventDefault()
         await subscription.unsubscribe()
-        // TODO: you should call your API to delete or invalidate subscription data on server
+
+        try {
+            await fetch('/api/notification', {
+                method: 'POST',
+                headers: {
+                    'Content-type': 'application/json'
+                },
+                body: JSON.stringify({
+                    action: 'UNSUBSCRIBE',
+                    user: id
+                })
+            })
+        } catch (err) {
+            console.log(err);
+        }
         setSubscription(null)
         // setIsSubscribed(false)
         console.log('web push unsubscribed!')
@@ -85,6 +115,7 @@ const NotificationManager = () => {
                 'Content-type': 'application/json'
             },
             body: JSON.stringify({
+                action: 'SEND_NOTIFICATION',
                 subscription: subscription
             })
         })

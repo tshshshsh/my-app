@@ -29,6 +29,7 @@ const Navigation = () => {
 
     async function logout() {
         eraseCookie('isAuth');
+        eraseCookie('userId');
         user.value = null;
         router.replace('/login');
     }

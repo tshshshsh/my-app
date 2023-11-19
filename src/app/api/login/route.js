@@ -10,9 +10,12 @@ export async function POST(request) {
     const user = users.find(item => item.name === body.login && item.key === body.password);
     const isUserExist = !!user;
     if (isUserExist) {
+        //TODO userId & isAuth дублирующая информация. 
         cookies().set('isAuth', 'true');
+        cookies().set('userId', body.login)
     } else {
-        cookies().delete('isAuth')
+        cookies().delete('isAuth');
+        cookies().delete('userId')
     }
 
     return NextResponse.json({ isSuccess: !!user });

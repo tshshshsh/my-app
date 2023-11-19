@@ -1,12 +1,1 @@
-{
-    "users": [
-        {
-            "name": "Tatiana",
-            "key": "55724"
-        },
-        {
-            "name": "Slava",
-            "key": "775189"
-        }
-    ]
-}
+{"users":[{"name":"Tatiana","key":"55724","webSubscription":{"endpoint":"https://fcm.googleapis.com/fcm/send/dOiBq4xqjfM:APA91bG4DrkInBwgYsL-xRVhKkKIz7enplHcLdErjvhx_IPCZiEtBFTFXTfTL0H_jfw8Xwu02lY2qXuOUwojesqt9FYIHNFByRlq_5-G4o4Jaw6YCZLA1VblLxwQcxcinhEXKX3Qte9d","expirationTime":null,"keys":{"p256dh":"BBQpMnOwLz07Rrlrzqcf2EQ7OpFMJ92Uybrk3pqC8AHJRTNIuJKJqmctTxLixEMXensWx_5rZueZpDusj5tNS9k","auth":"7f3UrZnSPFEi9SEdR0swrw"}}},{"name":"Slava","key":"775189"}]}
