@@ -8,7 +8,11 @@ webPush.setVapidDetails(
     `mailto:${process.env.NOTIFICATION_EMAIL}`,
     process.env.NEXT_PUBLIC_NOTIFICATION_KEY,
     process.env.NOTIFICATION_PRIVATE_KEY
-)
+);
+
+function readUser(userName) {
+    return usersData.users.find(({ name }) => name === userName);
+}
 
 export async function POST(request) {
     const body = await request.json();
@@ -22,7 +26,7 @@ export async function POST(request) {
                 return NextResponse.json({ message: 'Incorrect request' }, { status: 500 })
             }
 
-            const currentUser = usersData.users.find(({ name }) => name === user);
+            const currentUser = readUser(user);
 
             if (!currentUser) {
                 return NextResponse.json({ message: 'Wrong user name' }, { status: 500 })
@@ -42,7 +46,7 @@ export async function POST(request) {
                 return NextResponse.json({ message: 'Incorrect request' }, { status: 500 })
             }
 
-            const currentUser = usersData.users.find(({ name }) => name === user);
+            const currentUser = readUser(user);
 
             if (!currentUser) {
                 return NextResponse.json({ message: 'Wrong user name' }, { status: 500 })
@@ -57,7 +61,8 @@ export async function POST(request) {
 
 
         case 'SEND_NOTIFICATION':
-            const { subscription } = body;
+            const { user } = body;
+            const subscription = readUser(user).webSubscription;
             console.log(subscription.endpoint);
 
             const notification = await webPush

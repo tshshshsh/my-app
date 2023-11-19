@@ -116,7 +116,7 @@ const NotificationManager = () => {
             },
             body: JSON.stringify({
                 action: 'SEND_NOTIFICATION',
-                subscription: subscription
+                user: id
             })
         })
     }
