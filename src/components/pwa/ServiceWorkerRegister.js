@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import useServiceWorkerStore from "@/store/SWStore";
 
 
@@ -21,6 +21,7 @@ const ServiceWorkerRegister = () => {
 
                 } catch (err) {
                     console.log("Service Worker registration failed: ", err);
+                    setRegistration(null);
                 }
             };
             serviceWorkerRegistraion();

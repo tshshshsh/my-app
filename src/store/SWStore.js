@@ -3,7 +3,7 @@ import { create } from 'zustand';
 
 
 const useServiceWorkerStore = create((set) => ({
-    registration: null,
+    registration: undefined,
     setRegistration: (registration) => set({ registration: registration })
 }));
 

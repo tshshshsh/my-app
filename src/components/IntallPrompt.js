@@ -13,7 +13,6 @@ const InstallPrompt = () => {
     };
 
     useEffect(() => {
-        console.log('qqq');
         window.addEventListener("beforeinstallprompt", (event) => {
 
             console.log('beforeinstallprompt');

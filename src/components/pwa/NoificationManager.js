@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import useServiceWorkerStore from "@/store/SWStore";
+import useAuthStore from "@/store/AuthStore";
 import Button from "../ui/Button";
 
 const base64ToUint8Array = base64 => {
@@ -18,12 +19,20 @@ const base64ToUint8Array = base64 => {
 
 
 const NotificationManager = () => {
-    const registration = useServiceWorkerStore((state) => state.registration)
-
+    const registration = useServiceWorkerStore((state) => state.registration);
+    const user = useAuthStore((state) => state.user);
+    const [isClient, setIsClient] = useState(false);
     const [subscription, setSubscription] = useState(null);
 
     useEffect(() => {
-        if (!registration) return;
+        if (registration === undefined) {
+            return;
+        }
+
+        if (!registration) {
+            setIsClient(true);
+            return;
+        };
 
         const swSubscription = async () => {
             try {
@@ -35,6 +44,7 @@ const NotificationManager = () => {
             } catch (err) {
                 console.log("Push subscribtion err: " + err);
             }
+            setIsClient(true);
         }
 
         swSubscription();
@@ -80,6 +90,9 @@ const NotificationManager = () => {
         })
     }
 
+    if (!isClient || !user) {
+        return <></>;
+    }
 
     return (
         <div className="flex justify-around my-4 ">
