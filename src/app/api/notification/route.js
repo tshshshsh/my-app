@@ -18,7 +18,7 @@ export async function POST(request) {
             subscription,
             JSON.stringify({
                 title: 'Your Title',
-                body: 'Your Notification',
+                body: 'Your Notification ' + new Date(),
             })
         );
     console.log(notification);
