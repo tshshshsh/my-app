@@ -12,7 +12,7 @@ function getCookie(name) {
 const useAuthStore = create((set) => ({
     user: getCookie('isAuth'),
     id: getCookie('userId'),
-    setUser: (user) => set({ user: user })
+    setUser: (user, id) => set({ user: user, id: id }),
 }));
 
 export default useAuthStore;

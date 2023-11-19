@@ -1,1 +1,1 @@
-{"users":[{"name":"Tatiana","key":"55724","webSubscription":{"endpoint":"https://fcm.googleapis.com/fcm/send/c88lpNkgOa4:APA91bGElC66lYczNEG50D34cuGXQ3kRVQMaoJc1K86TSbP6upzFYNTPd8dsbazh-ztnHp0Q0d4ojHP0wf1i3nh6UpLUeRySFdn8DUxg2RGTytKCrddnivWvLJ6CXL55zRc9JpYztHbA","expirationTime":null,"keys":{"p256dh":"BG__VYatY-nbasL1kT80LaVwEX4_p5dQQAaOw1zRc-YqEvSDvx-LRw-OLXqO0JURQwwJXW1njWK2k4kS3h0njDE","auth":"02JTs_LeMYm9mjweEGHbrA"}}},{"name":"Slava","key":"775189"}]}
+{"users":[{"name":"Tatiana","key":"55724"},{"name":"Slava","key":"775189"}]}

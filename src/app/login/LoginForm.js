@@ -51,7 +51,7 @@ export default function LoginForm() {
             if (!data.isSuccess) {
                 throw new Error('No user');
             }
-            setUser(userData);
+            setUser(userData, userValue);
             router.replace('/');
             return;
 

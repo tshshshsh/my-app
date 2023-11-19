@@ -21,6 +21,7 @@ const base64ToUint8Array = base64 => {
 const NotificationManager = () => {
     const registration = useServiceWorkerStore((state) => state.registration);
     const { id, user } = useAuthStore();
+    console.log('User id: ' + id);
     const [isClient, setIsClient] = useState(false);
     const [subscription, setSubscription] = useState(null);
 

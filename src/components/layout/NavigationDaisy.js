@@ -30,7 +30,7 @@ const Navigation = () => {
     async function logout() {
         eraseCookie('isAuth');
         eraseCookie('userId');
-        setUser(null);
+        setUser(null, null);
         router.replace('/login');
     }
 
